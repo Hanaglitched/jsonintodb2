@@ -1,0 +1,6 @@
+jq '[.data | to_entries | .[] |
+  {
+    key: .key,
+    value: { foil: .value.paper.cardkingdom.buylist.foil, normal: .value.paper.cardkingdom.buylist.normal}
+  }
+]' AllPrices.json > output2.json

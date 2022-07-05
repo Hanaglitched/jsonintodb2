@@ -1,0 +1,6 @@
+jq '[.data[].cards[] |
+  {
+    key: .uuid,
+    value: { name:.name,  cardKingdom: .purchaseUrls.cardKingdom, multiverseId: .identifiers.multiverseId}
+  }
+]' AllPrintings.json > output.json
