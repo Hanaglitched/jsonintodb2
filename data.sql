@@ -1,32 +1,32 @@
-CREATE TABLE `MAGICNOTIFY_UUID_NAME` (
-    `key` VARCHAR(30) NOT NULL,
+CREATE TABLE `MagicnotifyUuidName` (
+    `key` VARCHAR(50) NOT NULL,
     PRIMARY KEY (`key`)
 );
-CREATE TABLE `MAGICNOTIFY_PRICE` (
-	`foil` DECIMAL(7,2) NOT NULL,
-	`normal` DECIMAL(7,2) NOT NULL,
+CREATE TABLE `MagicnotifyPrice` (
+	`foil` DECIMAL(10,2),
+	`normal` DECIMAL(10,2),
 	`date` DATE NOT NULL,
-	`key` VARCHAR(30) NOT NULL,
-	FOREIGN KEY (`key`) REFERENCES `MAGICNOTIFY_UUID_NAME` (`key`)
+	`key` VARCHAR(50) NOT NULL,
+	FOREIGN KEY (`key`) REFERENCES `MagicnotifyUuidName` (`key`)
 );
-CREATE TABLE `MAGICNOTIFY_SET_INFO`(
+CREATE TABLE `MagicnotifySetInfo`(
     `set` VARCHAR(10) NOT NULL,
-    `setName` VARCHAR(50) NOT NULL,
-    `reldate` DATE NOT NULL,
+    `setName` VARCHAR(50),
+    `reldate` DATE,
     PRIMARY KEY (`set`, `setName`, `reldate`)
 );
-CREATE TABLE `MAGICNOTIFY_CARD_INFO` (
-    `koname` VARCHAR(45) NOT NULL,
-	`name` VARCHAR(45) NOT NULL,
-	`cardkingdom` VARCHAR(45) NOT NULL,
-	`cardkingdomfoil` VARCHAR(45) NOT NULL,
+CREATE TABLE `MagicnotifyCardInfo` (
+    `koname` VARCHAR(45),
+	`name` VARCHAR(45),
+	`cardkingdom` VARCHAR(45),
+	`cardkingdomfoil` VARCHAR(45),
 	`set` VARCHAR(10) NOT NULL,
-	`setName` VARCHAR(50) NOT NULL,
-	`reldate` DATE NOT NULL,
-	`rarity` VARCHAR(10) NOT NULL,
-	`uuid` VARCHAR(30) NOT NULL,
-	FOREIGN KEY (`uuid`) REFERENCES `MAGICNOTIFY_UUID_NAME` (`key`),
-	FOREIGN KEY (`set`, `setName`, `reldate`) REFERENCES `MAGICNOTIFY_SET_INFO` (`set`, `setName`, `reldate`)
+	`setName` VARCHAR(50),
+	`reldate` DATE,
+	`rarity` VARCHAR(10),
+	`uuid` VARCHAR(50) NOT NULL,
+	FOREIGN KEY (`uuid`) REFERENCES `MagicnotifyUuidName` (`key`),
+	FOREIGN KEY (`set`, `setName`, `reldate`) REFERENCES `MagicnotifySetInfo` (`set`, `setName`, `reldate`)
 );
 
 
